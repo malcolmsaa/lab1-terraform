@@ -1,5 +1,14 @@
 # Lab 1 Terraform
 
+## Syfte
+## Infrastruktur
+## Säkerhetsåtgärder
+## Backup-strategi
+## GitHub Actions
+## Filer i projektet
+## Kör lokalt
+## Outputs
+## Reflektion
 Detta repo innehåller Terraform-kod för att skapa en VM i GCP för Lab 1.
 
 ## Innehåll
