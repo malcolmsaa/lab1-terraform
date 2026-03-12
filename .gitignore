@@ -1,10 +1,6 @@
-# Terraform
-.terraform/
 *.tfstate
 *.tfstate.*
-.terraform.lock.hcl
-
-# Secrets and local vars
+.terraform/
 terraform.tfvars
 *.tfvars
 !example.tfvars

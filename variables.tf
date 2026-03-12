@@ -10,6 +10,6 @@ variable "region" {
 }
 
 variable "student_id" {
-  description = "Student ID"
+  description = "Your student identifier"
   type        = string
 }

@@ -3,7 +3,6 @@
 Detta repo innehåller Terraform-kod för att skapa en VM i GCP för Lab 1.
 
 ## Innehåll
-
 - Terraform-konfiguration för Google Cloud
 - Ubuntu 22.04 VM
 - Startup script för grundläggande hardening
@@ -11,7 +10,6 @@ Detta repo innehåller Terraform-kod för att skapa en VM i GCP för Lab 1.
 - GitHub Actions för validate och plan
 
 ## Filer
-
 - `main.tf`
 - `variables.tf`
 - `outputs.tf`
@@ -19,7 +17,6 @@ Detta repo innehåller Terraform-kod för att skapa en VM i GCP för Lab 1.
 - `.github/workflows/terraform.yml`
 
 ## Variabler
-
 Exempel på `terraform.tfvars`:
 
 ```hcl

@@ -2,7 +2,7 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "~>5.0"
+      version = "~> 5.0"
     }
   }
 }
@@ -11,6 +11,7 @@ provider "google" {
   project = var.project_id
   region  = var.region
 }
+
 resource "google_compute_instance" "vm" {
   name         = "${var.student_id}-lab1-vm"
   machine_type = "e2-micro"
@@ -20,6 +21,7 @@ resource "google_compute_instance" "vm" {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-2204-lts"
       size  = 20
+      type  = "pd-balanced"
     }
   }
 
@@ -38,6 +40,7 @@ resource "google_compute_instance" "vm" {
 
   tags = ["lab1", "ssh"]
 }
+
 resource "google_compute_resource_policy" "daily_backup" {
   name   = "${var.student_id}-daily-backup"
   region = var.region
