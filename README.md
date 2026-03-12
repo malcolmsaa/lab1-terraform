@@ -1,3 +1,4 @@
+![Terraform CI](https://github.com/malcolmsaa/lab1-terraform/actions/workflows/terraform.yml/badge.svg)
 # Lab 1 Terraform
 
 ## Syfte
@@ -35,3 +36,9 @@ Exempel på `terraform.tfvars`:
 project_id = "chas-devsecops-2026"
 region     = "europe-north1"
 student_id = "malcolm"
+
+## Reflection
+
+Terraform makes the infrastructure reproducible and version controlled.  
+Using GitHub Actions ensures that every change is validated automatically.  
+The snapshot policy improves resilience by allowing recovery if the VM or disk fails.
