@@ -1,44 +1,30 @@
-![Terraform CI](https://github.com/malcolmsaa/lab1-terraform/actions/workflows/terraform.yml/badge.svg)
-# Lab 1 Terraform
+# Lab 2 Container Security
 
-## Syfte
-## Infrastruktur
-## Säkerhetsåtgärder
-## Backup-strategi
-## GitHub Actions
-## Filer i projektet
-## Kör lokalt
-## Outputs
-## Reflektion
-Detta repo innehåller Terraform-kod för att skapa en VM i GCP för Lab 1.
+This lab demonstrates container security practices using Docker, Trivy, SBOM and Kubernetes Gatekeeper.
 
-## Innehåll
+## Steps performed
 
-- Terraform-konfiguration för Google Cloud
-- Ubuntu 22.04 VM
-- Startup script för grundläggande hardening
-- Daily snapshot policy
-- GitHub Actions för validate och plan
+1. Created a vulnerable container image
+2. Scanned the image using Trivy
+3. Hardened the Dockerfile
+4. Generated an SBOM
+5. Tested OPA Gatekeeper policies in Kubernetes
 
-## Filer
+## Tools used
 
-- `main.tf`
-- `variables.tf`
-- `outputs.tf`
-- `startup.sh`
-- `.github/workflows/terraform.yml`
+Docker  
+Trivy  
+Kubernetes  
+OPA Gatekeeper
 
-## Variabler
-
-Exempel på `terraform.tfvars`:
-
-```hcl
-project_id = "chas-devsecops-2026"
-region     = "europe-north1"
-student_id = "malcolm"
+Screenshots showing the results are included in the screenshots folder.
 
 ## Reflection
 
-Terraform makes the infrastructure reproducible and version controlled.  
-Using GitHub Actions ensures that every change is validated automatically.  
-The snapshot policy improves resilience by allowing recovery if the VM or disk fails.
+In this lab I learned more about container security and how to identify vulnerabilities in container images. I used the tool Trivy to scan my container image and analyze which packages and dependencies contained security issues. This helped me understand how important it is to scan container images before deploying them.
+
+I also hardened the Dockerfile by using a smaller base image and running the container as a non-root user. This reduces the attack surface and improves container security.
+
+I generated an SBOM which lists all components and dependencies inside the container image. SBOM is important because it makes it easier to track vulnerabilities and understand what software is included in the image.
+
+Finally I tested OPA Gatekeeper policies in Kubernetes. Gatekeeper can automatically block pods that do not follow defined security policies. This helps enforce security rules in the cluster and prevents insecure deployments.
