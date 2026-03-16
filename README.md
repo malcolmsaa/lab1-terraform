@@ -1,30 +1,24 @@
-# Lab 2 Container Security
+# Lab 1 Terraform
 
-This lab demonstrates container security practices using Docker, Trivy, SBOM and Kubernetes Gatekeeper.
+This project provisions a virtual machine in Google Cloud Platform using Terraform.
 
-## Steps performed
+## What the project does
 
-1. Created a vulnerable container image
-2. Scanned the image using Trivy
-3. Hardened the Dockerfile
-4. Generated an SBOM
-5. Tested OPA Gatekeeper policies in Kubernetes
+The Terraform configuration creates a Google Compute Engine VM in the project `chas-devsecops-2026`.  
+It also applies a daily snapshot backup policy and uses a startup script for basic hardening.
 
-## Tools used
+## Files
 
-Docker  
-Trivy  
-Kubernetes  
-OPA Gatekeeper
+- `main.tf` , main Terraform configuration
+- `variables.tf` , input variables
+- `outputs.tf` , Terraform outputs
+- `startup.sh` , startup hardening script
+- `.github/workflows/terraform.yml` , CI pipeline
 
-Screenshots showing the results are included in the screenshots folder.
+## How to run
 
-## Reflection
-
-In this lab I learned more about container security and how to identify vulnerabilities in container images. I used the tool Trivy to scan my container image and analyze which packages and dependencies contained security issues. This helped me understand how important it is to scan container images before deploying them.
-
-I also hardened the Dockerfile by using a smaller base image and running the container as a non-root user. This reduces the attack surface and improves container security.
-
-I generated an SBOM which lists all components and dependencies inside the container image. SBOM is important because it makes it easier to track vulnerabilities and understand what software is included in the image.
-
-Finally I tested OPA Gatekeeper policies in Kubernetes. Gatekeeper can automatically block pods that do not follow defined security policies. This helps enforce security rules in the cluster and prevents insecure deployments.
+```bash
+terraform init
+terraform validate
+terraform plan
+terraform apply
