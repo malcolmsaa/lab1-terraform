@@ -26,6 +26,7 @@ terraform apply
 ## Screenshots
 
 ### Terraform pipeline (GitHub Actions)
+### GitHub Actions pipeline
 ![Pipeline](screenshots/pipeline.png)
 
 ### VM i GCP
