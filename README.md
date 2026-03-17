@@ -22,3 +22,14 @@ terraform init
 terraform validate
 terraform plan
 terraform apply
+
+## Screenshots
+
+### GitHub Actions pipeline
+![Pipeline](screenshots/pipeline.png)
+
+### VM i GCP
+![VM](screenshots/vm.png)
+
+### Kod / Terraform
+![Kod](screenshots/kod.png)
