@@ -6,6 +6,10 @@ on:
       - main
       - master
   pull_request:
+env:
+  TF_VAR_project_id: "chas-devsecops-2026"
+  TF_VAR_region: "europe-north1"
+  TF_VAR_student_id: "malcolm"
 
 jobs:
   terraform:
