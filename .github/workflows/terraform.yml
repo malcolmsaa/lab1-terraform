@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - master
   pull_request:
 env:
   TF_VAR_project_id: "chas-devsecops-2026"
@@ -22,29 +21,18 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - name: Authenticate to Google Cloud
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-        run: |
-          echo "$GCP_SA_KEY" > "$HOME/gcp-key.json"
-          echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcp-key.json" >> $GITHUB_ENV
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -backend=false
 
       - name: Terraform Validate
         run: terraform validate
 
-      - name: Create terraform.tfvars
-        run: |
-          cat <<EOF > terraform.tfvars
-          project_id = "chas-devsecops-2026"
-          region     = "europe-north1"
-          student_id = "malcolm"
-          EOF
-
-      - name: Terraform Plan
-        run: terraform plan
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+      - name: Trivy IaC Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: config
+          scan-ref: .
+          severity: CRITICAL,HIGH
