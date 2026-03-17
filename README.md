@@ -30,5 +30,6 @@ terraform apply
 
 ### VM i GCP
 ![VM](screenshots/vm.png)
+
 ### Kod / Terraform
 ![Kod](screenshots/kod.png)
