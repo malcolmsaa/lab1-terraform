@@ -1,12 +1,44 @@
 # Lab 1 Terraform
 
-## Innehåll
+This project provisions and secures a virtual machine in Google Cloud Platform using Terraform, with integrated CI/CD validation and security scanning.
 
-- main.tf, main Terraform configuration  
-- variables.tf, input variables  
-- outputs.tf, Terraform outputs  
-- startup.sh, startup hardening script  
-- .github/workflows/terraform.yml, CI pipeline  
+---
+
+## Project overview
+
+The solution creates a Google Compute Engine VM using Infrastructure as Code.  
+It applies baseline hardening, automated backups, and validation through a CI pipeline.
+
+The goal is to demonstrate core DevSecOps principles:
+
+- Infrastructure as Code  
+- Security by default  
+- Automated validation  
+- Recoverability  
+- Controlled lifecycle management  
+
+---
+
+## Architecture
+
+- Google Compute Engine VM  
+- Terraform-managed infrastructure  
+- Daily snapshot backup policy  
+- GitHub Actions CI pipeline  
+- Manual destroy workflow  
+
+---
+
+## Files
+
+- `main.tf` – main Terraform configuration  
+- `variables.tf` – input variables  
+- `outputs.tf` – Terraform outputs  
+- `startup.sh` – VM hardening script  
+- `.github/workflows/terraform.yml` – CI pipeline  
+- `.github/workflows/destroy.yml` – destroy workflow  
+
+---
 
 ## How to run
 
@@ -15,29 +47,3 @@ terraform init
 terraform validate
 terraform plan
 terraform apply
-```
-
-## Screenshots
-
-### GitHub Actions pipeline
-![Pipeline](screenshots/pipeline.png)
-
-### VM i GCP
-![VM](screenshots/vm.png)
-terraform apply
-
-## Security hardening
-
-The VM uses a basic hardening startup script with the following controls:
-
-- UFW enabled
-- Default deny incoming traffic
-- SSH explicitly allowed
-- Fail2ban installed
-- Unattended upgrades enabled
-
-### CIS note
-This configuration is aligned with core CIS-style hardening principles for a basic Linux VM, especially around host firewalling, brute-force protection, and automated patching.
-
-### Current limitations
-A full CIS benchmark audit has not been automated in this lab environment, but the VM includes foundational controls that improve its security posture and move it toward CIS-aligned hardening.
