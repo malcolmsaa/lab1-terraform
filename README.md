@@ -1,19 +1,36 @@
 # Lab 1 Terraform
 
-This project provisions a virtual machine in Google Cloud Platform using Terraform.
+This project provisions and secures a virtual machine in Google Cloud Platform using Terraform, with integrated CI/CD validation and security scanning.
 
-## What the project does
+## Project overview
 
-The Terraform configuration creates a Google Compute Engine VM in the project `chas-devsecops-2026`.
-It also applies a daily snapshot backup policy and uses a startup script for basic hardening.
+The solution creates a Google Compute Engine VM using Infrastructure as Code.  
+It applies baseline hardening, automated backups, and validation through a CI pipeline.
+
+The goal is to demonstrate core DevSecOps principles:
+
+- Infrastructure as Code
+- Security by default
+- Automated validation
+- Recoverability
+- Controlled lifecycle management
+
+## Architecture
+
+- Google Compute Engine VM
+- Terraform-managed infrastructure
+- Daily snapshot backup policy
+- GitHub Actions CI pipeline
+- Manual destroy workflow
 
 ## Files
 
-- `main.tf`, main Terraform configuration
-- `variables.tf`, input variables
-- `outputs.tf`, Terraform outputs
-- `startup.sh`, startup hardening script
-- `.github/workflows/terraform.yml`, CI pipeline
+- `main.tf` - main Terraform configuration
+- `variables.tf` - input variables
+- `outputs.tf` - Terraform outputs
+- `startup.sh` - VM hardening script
+- `.github/workflows/terraform.yml` - CI pipeline
+- `.github/workflows/destroy.yml` - destroy workflow
 
 ## How to run
 
@@ -31,3 +48,91 @@ terraform apply
 
 ### VM i GCP
 ![VM](screenshots/vm.png)
+
+## Security hardening
+
+The VM uses a basic hardening startup script with the following controls:
+
+- UFW enabled
+- Default deny incoming traffic
+- SSH explicitly allowed
+- Fail2ban installed
+- Unattended upgrades enabled
+
+## Security decisions
+
+- UFW reduces exposed attack surface
+- Fail2ban reduces brute-force attempts
+- Unattended upgrades improve patch hygiene
+- Daily snapshots improve recoverability
+- CI pipeline validates Terraform before deployment
+
+## CIS alignment
+
+The configuration aligns with key CIS principles:
+
+- Host-based firewall enforcement
+- Principle of least exposure
+- Patch management enabled
+- Basic intrusion protection
+
+### Limitation
+
+A full CIS benchmark scan is not automated in this lab environment.  
+However, the implemented controls improve the system toward a more CIS-aligned posture.
+
+## Disaster Recovery
+
+RPO: 24 hours  
+RTO: 1 hour  
+
+The infrastructure uses daily snapshots to ensure recovery in case of failure.
+
+## Backup and recovery
+
+### Backup strategy
+A daily snapshot policy is applied using Terraform.
+
+- Frequency: once per day
+- Retention: 7 days
+
+## CI/CD pipeline
+
+The GitHub Actions pipeline performs:
+
+- Terraform format validation
+- Terraform configuration validation
+- Security scanning using Trivy
+
+The pipeline is configured to fail if CRITICAL or HIGH issues are found.
+
+## Auto destroy workflow
+
+A manual GitHub Actions workflow is included:
+
+- Triggered on demand
+- Executes `terraform destroy`
+- Ensures controlled teardown of infrastructure
+
+This supports:
+
+- Cost control
+- Environment cleanup
+- Safe lifecycle management
+
+## Remote state note
+
+Terraform remote state in Google Cloud Storage was planned as a VG improvement.
+
+Implementation is currently blocked due to missing permissions for creating Cloud Storage buckets in the provided GCP project.
+
+## Conclusion
+
+This project demonstrates:
+
+- Infrastructure as Code with Terraform
+- Secure VM provisioning
+- Backup and recovery strategy
+- CI/CD validation with security scanning
+- Controlled infrastructure lifecycle
+- Basic DevSecOps practices
