@@ -136,3 +136,51 @@ This project demonstrates:
 - CI/CD validation with security scanning
 - Controlled infrastructure lifecycle
 - Basic DevSecOps practices
+
+## Security hardening (CIS inspired)
+
+This VM is hardened based on common CIS Linux principles:
+
+- Root login disabled
+- Password authentication disabled (SSH keys only)
+- UFW firewall enabled (deny incoming by default)
+- Fail2ban installed and active
+- Automatic security updates enabled
+- Unnecessary services disabled
+- Kernel protections enabled (rp_filter, kptr_restrict, dmesg_restrict)
+
+Result:
+- Reduced attack surface
+- Protection against brute force attacks
+- Secure default configuration
+
+---
+
+## DevSecOps pipeline
+
+The pipeline enforces security:
+
+- terraform fmt check
+- terraform validate
+- Trivy security scan
+
+The pipeline fails if HIGH or CRITICAL vulnerabilities are found.
+
+---
+
+## Disaster Recovery (RPO / RTO)
+
+- RPO: 24 hours (daily snapshots)
+- RTO: ~15 minutes (restore from snapshot)
+
+Snapshots are managed via Terraform resource policy.
+
+---
+
+## Network security decision
+
+- No public IP assigned to VM
+- Access is restricted to internal network
+- SSH access controlled via firewall rules
+
+This eliminates exposure to the public internet.
