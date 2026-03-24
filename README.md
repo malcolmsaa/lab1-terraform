@@ -72,3 +72,25 @@ This project demonstrates:
 - Secure VM provisioning  
 - Backup and recovery strategy  
 - CI/CD validation with security scanning  
+
+## Security decisions
+
+- No public IP assigned to VM
+- UFW firewall enabled (deny incoming)
+- Fail2ban installed
+- Automatic security updates enabled
+
+## Disaster Recovery
+
+RPO: 24 hours  
+RTO: 1 hour  
+
+Daily snapshots are configured using Terraform.
+
+## Auto destroy workflow
+
+A GitHub Actions workflow is included to destroy infrastructure manually.
+
+## CI/CD security
+
+The pipeline fails if vulnerabilities are detected by Trivy.
