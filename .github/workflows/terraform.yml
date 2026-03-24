@@ -31,5 +31,5 @@ jobs:
         with:
           scan-type: config
           scan-ref: .
-severity: LOW,MEDIUM,HIGH,CRITICAL
+          severity: LOW,MEDIUM,HIGH,CRITICAL
           exit-code: '1'
