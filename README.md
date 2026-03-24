@@ -99,9 +99,11 @@ The GitHub Actions pipeline performs:
 
 The pipeline fails if vulnerabilities are detected by Trivy.
 
+The pipeline is configured to exit with code 1 if CRITICAL vulnerabilities are found.
+
 ## Auto destroy workflow
 
-A GitHub Actions workflow is included to destroy infrastructure manually.
+The destroy workflow allows manual teardown of all infrastructure using Terraform destroy via GitHub Actions.
 
 ## Conclusion
 
