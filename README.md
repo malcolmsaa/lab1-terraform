@@ -184,3 +184,10 @@ Snapshots are managed via Terraform resource policy.
 - SSH access controlled via firewall rules
 
 This eliminates exposure to the public internet.
+
+## Security decisions
+
+- Removed public IP from VM
+- UFW firewall enabled (deny incoming)
+- Fail2ban installed for brute-force protection
+- Automatic security updates enabled
