@@ -70,7 +70,7 @@ The VM uses a startup script with the following controls:
 
 ## CIS style hardening
 
-The configuration follows common CIS style hardening principles:
+The startup script implements basic CIS-inspired hardening controls:
 
 - Least exposure
 - Secure SSH configuration
@@ -84,6 +84,8 @@ RPO: 24 hours
 RTO: 1 hour  
 
 Daily snapshots are configured using Terraform.
+
+The snapshot policy supports the defined RPO and RTO.
 
 ## Backup strategy
 
@@ -101,9 +103,17 @@ The pipeline fails if vulnerabilities are detected by Trivy.
 
 The pipeline is configured to exit with code 1 if CRITICAL vulnerabilities are found.
 
+A failed pipeline run is included in the Actions tab as proof that CRITICAL findings block the pipeline.
+
 ## Auto destroy workflow
 
 The destroy workflow allows manual teardown of all infrastructure using Terraform destroy via GitHub Actions.
+
+The workflow can be manually triggered from GitHub Actions.
+
+## Naming
+
+The VM name is generated using the student ID variable.
 
 ## Conclusion
 
