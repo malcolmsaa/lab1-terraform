@@ -115,6 +115,14 @@ The workflow can be manually triggered from GitHub Actions.
 
 The VM name is generated using the student ID variable.
 
+### Security enforcement proof
+
+The CI pipeline is configured to fail on CRITICAL vulnerabilities.
+
+A failed pipeline run was intentionally triggered to verify enforcement.
+
+![Trivy Fail](screenshots/trivy-fail.png)
+	
 ## Conclusion
 
 This project demonstrates:
